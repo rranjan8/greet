@@ -11,4 +11,7 @@ import retrofit2.http.Path
 interface ApiInterface {
     @GET("api/Categories")
     fun getMainCategory(): Call<Data>
+
+    @GET("api/SubCategoriesByCategory/{Id}")
+    fun getSubCategory(@Path("Id") subcategoryId: Int): Call<Data>
 }

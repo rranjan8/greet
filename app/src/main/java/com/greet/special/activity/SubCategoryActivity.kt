@@ -1,37 +1,32 @@
 package com.greet.special.activity
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import android.app.ProgressDialog
 import android.os.Bundle
-import android.os.Handler
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import com.greet.special.Greeting
 import com.greet.special.R
+import com.greet.special.model.CategoryResponse
+import com.greet.special.model.Data
 import com.greet.special.network.ApiCall
 import com.greet.special.network.ApiInterface
+import kotlinx.android.synthetic.main.header.view.*
+import kotlinx.android.synthetic.main.sub_category.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.app.ProgressDialog
-import com.greet.special.Greeting
-import com.greet.special.model.CategoryResponse
-import com.greet.special.model.Data
 
+class SubCategoryActivity : AppCompatActivity() {
 
-class SplashActivity : AppCompatActivity() {
     lateinit var myApplication: Greeting
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash)
-        myApplication = applicationContext as Greeting
-        var handler = Handler()
-        handler.postDelayed({
-            getMainCategory()
-        }, 1)
-    }
+        setContentView(R.layout.sub_category)
+        header.back.visibility = View.GONE
 
-    private fun moveToAnotherActivity() {
-        intent = Intent(this@SplashActivity, MainCategoryActivity::class.java)
-        startActivity(intent)
+        sub_category_list.layoutManager = LinearLayoutManager(this)
     }
 
     fun getMainCategory() {
@@ -55,11 +50,9 @@ class SplashActivity : AppCompatActivity() {
                 for (ca in dataList) {
                     println("Id: " + ca.getCategoryId() + " name: " + ca.getCategoryName())
                 }
-                moveToAnotherActivity()
                 progress.dismiss()
             }
 
         })
     }
 }
-

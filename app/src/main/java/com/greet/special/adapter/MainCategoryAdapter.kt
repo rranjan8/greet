@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.greet.special.R
 import android.widget.TextView
+import com.greet.special.model.CategoryResponse
 
 
-class MainCategoryAdapter(private var mainCategoryList: ArrayList<String>, val mainCategoryClicked: MainCategoryClick) : RecyclerView.Adapter<MainCategoryAdapter.ViewHolder>() {
+class MainCategoryAdapter(private var mainCategoryList: MutableList<CategoryResponse>, val mainCategoryClicked: MainCategoryClick) : RecyclerView.Adapter<MainCategoryAdapter.ViewHolder>() {
 
     companion object {
         var mClickListener: MainCategoryClick? = null
@@ -28,7 +29,7 @@ class MainCategoryAdapter(private var mainCategoryList: ArrayList<String>, val m
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         mClickListener = mainCategoryClicked
-        holder?.name?.setText(mainCategoryList.get(position))
+        holder?.name?.setText(mainCategoryList.get(position).getCategoryName())
 
         holder.name.setOnClickListener {
             mClickListener?.mainCategoryClicked(mainCategoryList.get(position))
@@ -40,12 +41,11 @@ class MainCategoryAdapter(private var mainCategoryList: ArrayList<String>, val m
 
         init {
             name = view.findViewById<View>(R.id.main_row) as TextView
-
         }
     }
 
     interface MainCategoryClick {
-        fun mainCategoryClicked(string: String)
+        fun mainCategoryClicked(mainCategory: CategoryResponse)
     }
 
 

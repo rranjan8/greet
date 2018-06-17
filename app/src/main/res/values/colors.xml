@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="headerTextColor">#FFFFFF</color>
     <color name="lightBlackColor">#a7a7a7</color>
+    <color name="redBuildColor">#fc0c0c</color>
+    <color name="redDarkColor">#5d0101</color>
+    <color name="white">#fcfcfc</color>
 </resources>
