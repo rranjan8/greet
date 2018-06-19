@@ -1,6 +1,7 @@
 package com.greet.special.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -31,6 +32,9 @@ class MainCategoryActivity : AppCompatActivity() {
         main_category_list.adapter = MainCategoryAdapter(mainCategoryList, object : MainCategoryAdapter.MainCategoryClick {
             override fun mainCategoryClicked(string: CategoryResponse) {
                 Toast.makeText(this@MainCategoryActivity, string.getCategoryName(), Toast.LENGTH_SHORT).show()
+                var intent: Intent = Intent(this@MainCategoryActivity, SubCategoryActivity::class.java)
+                intent.putExtra("Id",string.getCategoryId())
+                startActivity(intent)
             }
 
         })

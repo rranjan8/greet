@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.greet.special.R
 import com.greet.special.model.CategoryResponse
+import com.greet.special.model.SubCategoryResponse
 
-class SubCategoryAdapter(private var mainCategoryList: MutableList<CategoryResponse>, val subCategoryClicked:SubCategoryClick) : RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder>() {
+class SubCategoryAdapter(private var subCategoryList: MutableList<SubCategoryResponse>, val subCategoryClicked: SubCategoryClick) : RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder>() {
 
     companion object {
         var mClickListener: SubCategoryClick? = null
@@ -20,25 +21,26 @@ class SubCategoryAdapter(private var mainCategoryList: MutableList<CategoryRespo
     }
 
     override fun getItemCount(): Int {
-        return mainCategoryList.size
+        return subCategoryList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         mClickListener = subCategoryClicked
-        holder?.name?.setText(mainCategoryList.get(position).getCategoryName())
+        holder?.name?.setText(subCategoryList.get(position).SubCategoryName)
         holder.name.setOnClickListener {
-            MainCategoryAdapter.mClickListener?.mainCategoryClicked(mainCategoryList.get(position))
+            mClickListener?.subCategoryClicked(subCategoryList.get(position))
         }
     }
 
-    inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView
+
         init {
             name = view.findViewById<View>(R.id.main_row) as TextView
         }
     }
 
     interface SubCategoryClick {
-        fun subCategoryClicked(mainCategory: CategoryResponse)
+        fun subCategoryClicked(mainCategory: SubCategoryResponse)
     }
 }

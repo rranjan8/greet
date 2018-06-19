@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
 
+
+
         <activity android:name=".activity.MainCategoryActivity"></activity>
+        <activity android:name=".activity.SubCategoryActivity"></activity>
     </application>
 
 </manifest>
