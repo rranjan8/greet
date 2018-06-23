@@ -1,6 +1,7 @@
 package com.greet.special.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -36,6 +37,9 @@ class SubCategoryActivity : AppCompatActivity() {
         var id:Int = intent.getIntExtra("Id",0)
         sub_category_list.layoutManager = LinearLayoutManager(this)
         getMainCategory(id)
+
+
+
     }
 
     fun getMainCategory(id:Int) {
@@ -58,7 +62,9 @@ class SubCategoryActivity : AppCompatActivity() {
 
                 sub_category_list.adapter = SubCategoryAdapter(dataList,object:SubCategoryAdapter.SubCategoryClick{
                     override fun subCategoryClicked(subCategory: SubCategoryResponse) {
-                        Toast.makeText(this@SubCategoryActivity,subCategory.SubCategoryName,Toast.LENGTH_SHORT).show()
+                       var intent: Intent = Intent(this@SubCategoryActivity, NormalMessageActivity::class.java)
+                        intent.putExtra("SUBCATEGORY_ID",subCategory.SubCategoryId)
+                        startActivity(intent)
                     }
                 })
                 progress.dismiss()

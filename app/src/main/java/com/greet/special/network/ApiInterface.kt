@@ -2,6 +2,7 @@ package com.greet.special.network
 
 import android.provider.ContactsContract
 import com.greet.special.model.Data
+import com.greet.special.model.DataImageContent
 import com.greet.special.model.DataSubCategory
 import org.json.JSONObject
 import retrofit2.Call
@@ -17,5 +18,5 @@ interface ApiInterface {
     fun getSubCategory(@Path("Id") subcategoryId: Int): Call<DataSubCategory>
 
     @GET("api/imageAndContentBySubCatId/{Id}")
-    fun getContentAndImage(@Path("Id") subcategoryId: Int): Call<DataSubCategory>
+    fun getContentAndImage(@Path("Id") subcategoryId: Int): Call<DataImageContent>
 }

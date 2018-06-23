@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.greet.special.Greeting
@@ -28,7 +29,7 @@ class MainCategoryActivity : AppCompatActivity() {
 
         var mainCategoryList : MutableList<CategoryResponse> = myApp.mainCategoryList
 
-        main_category_list.layoutManager = LinearLayoutManager(this)
+        main_category_list.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         main_category_list.adapter = MainCategoryAdapter(mainCategoryList, object : MainCategoryAdapter.MainCategoryClick {
             override fun mainCategoryClicked(string: CategoryResponse) {
                 Toast.makeText(this@MainCategoryActivity, string.getCategoryName(), Toast.LENGTH_SHORT).show()

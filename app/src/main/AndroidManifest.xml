@@ -23,6 +23,7 @@
 
         <activity android:name=".activity.MainCategoryActivity"></activity>
         <activity android:name=".activity.SubCategoryActivity"></activity>
+        <activity android:name=".activity.NormalMessageActivity"></activity>
     </application>
 
 </manifest>
