@@ -85,6 +85,11 @@
                 android:id="@+id/quotationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:hint="click to select/write quote"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:padding="5dp"
                 android:layout_margin="10dp" />
 
         </LinearLayout>

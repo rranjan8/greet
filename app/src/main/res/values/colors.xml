@@ -8,4 +8,5 @@
     <color name="redBuildColor">#fc0c0c</color>
     <color name="redDarkColor">#5d0101</color>
     <color name="white">#fcfcfc</color>
+    <color name="medium_black">#5a5959</color>
 </resources>

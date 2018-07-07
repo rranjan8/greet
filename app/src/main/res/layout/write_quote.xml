@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/header_write"
+        layout="@layout/header"></include>
+
+    <EditText
+        android:id="@+id/quoteId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_write"
+        android:layout_margin="5dp"
+        android:background="@drawable/rectangle"
+        android:gravity="top"
+        android:hint="@string/writeQuoteHint"
+        android:inputType="textMultiLine|textLongMessage"
+        android:maxLines="6"
+        android:minHeight="200dp"
+        android:padding="5dp" />
+
+
+    <TextView
+        android:id="@+id/done"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/done"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/button_size" />
+
+</RelativeLayout>

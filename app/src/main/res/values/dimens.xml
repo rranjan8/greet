@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dialog_header_textsize">18sp</dimen>
+    <dimen name="menu_row_textsize">16sp</dimen>
+    <dimen name="button_size">16sp</dimen>
 </resources>

@@ -24,6 +24,11 @@
         <activity android:name=".activity.MainCategoryActivity"></activity>
         <activity android:name=".activity.SubCategoryActivity"></activity>
         <activity android:name=".activity.NormalMessageActivity"></activity>
+        <activity android:name=".activity.TextActivity"></activity>
+        <activity android:name=".activity.FontActivity"></activity>
+        <activity android:name=".activity.WriteQuote"></activity>
+        <activity android:name=".activity.FontSizeActivity"></activity>
+        <activity android:name=".activity.PreviewActivity"></activity>
     </application>
 
 </manifest>

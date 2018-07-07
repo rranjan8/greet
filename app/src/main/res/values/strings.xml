@@ -2,4 +2,6 @@
     <string name="app_name">Greeting</string>
     <string name="share">SHARE</string>
     <string name="preview">PREVIEW</string>
+    <string name="writeQuoteHint">Write Quote Here..</string>
+    <string name="done">DONE</string>
 </resources>

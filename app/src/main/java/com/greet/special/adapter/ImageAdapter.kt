@@ -37,9 +37,6 @@ class ImageAdapter(private var mainImageList: MutableList<ImageListModel>, val i
             image = view.findViewById<View>(R.id.imageMessage) as ImageView
         }
 
-        fun updateWithUrl(url: String) {
-            Picasso.get().load(url).into(image)
-        }
     }
 
     interface ImageClick {
