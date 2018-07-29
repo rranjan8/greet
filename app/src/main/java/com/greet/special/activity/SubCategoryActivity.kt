@@ -32,7 +32,7 @@ class SubCategoryActivity : AppCompatActivity() {
         setContentView(R.layout.sub_category)
         header.back.visibility = View.GONE
 
-        header.headerName.setText("Sub Category")
+        header.headerName.setText("SUB CATEGORY")
 
         var id:Int = intent.getIntExtra("Id",0)
         sub_category_list.layoutManager = LinearLayoutManager(this)

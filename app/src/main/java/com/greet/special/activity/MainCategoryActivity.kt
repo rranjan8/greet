@@ -27,6 +27,8 @@ class MainCategoryActivity : AppCompatActivity() {
         setContentView(R.layout.main_category)
         header.back.visibility = View.GONE
 
+        header.headerName.setText("CATEGORY")
+
         var mainCategoryList : MutableList<CategoryResponse> = myApp.mainCategoryList
 
         main_category_list.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?

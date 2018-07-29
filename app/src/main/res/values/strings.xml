@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Greeting</string>
+    <string name="app_name">Greet</string>
     <string name="share">SHARE</string>
     <string name="preview">PREVIEW</string>
     <string name="writeQuoteHint">Write Quote Here..</string>

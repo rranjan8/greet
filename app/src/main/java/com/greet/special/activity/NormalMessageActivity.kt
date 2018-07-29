@@ -28,9 +28,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import yuku.ambilwarna.AmbilWarnaDialog
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.net.Uri
 import android.os.Environment
+import android.support.v4.content.FileProvider
+import com.greet.special.BuildConfig
 import com.greet.special.Greeting
 import java.io.*
+import java.io.File.separator
+import java.nio.file.Files.isDirectory
+
+
 
 
 class NormalMessageActivity : AppCompatActivity() {
@@ -42,6 +50,7 @@ class NormalMessageActivity : AppCompatActivity() {
     lateinit var imageList: MutableList<ImageListModel>
     lateinit var menuList: MutableList<String>
     lateinit var normalViewModel: NormalViewModel
+    lateinit var shareAblefile:File
 
 
     lateinit var setectedMenu: String
@@ -86,7 +95,12 @@ class NormalMessageActivity : AppCompatActivity() {
         getImageAndContent(id)
 
         preview.setOnClickListener {
-            changeViewToBitmap()
+            //changeViewToBitmap()
+            callPreviewActivity()
+        }
+
+        share.setOnClickListener {
+            shareImageViaIntent()
         }
     }
 
@@ -199,17 +213,79 @@ class NormalMessageActivity : AppCompatActivity() {
     }
 
     fun changeViewToBitmap() {
-        val bm = card_view.drawingCache
-        myApp.bitmap = bm
+        /* card_view.setDrawingCacheEnabled(true)
+         card_view.buildDrawingCache()*/
+
+        var bitmap = Bitmap.createBitmap(card_view.getWidth(), card_view.getHeight(), Bitmap.Config.ARGB_8888)
+        var canvas: Canvas = Canvas(bitmap)
+        var drawable = card_view.background
+        if (drawable != null) {
+            drawable.draw(canvas)
+        }
+
+        card_view.draw(canvas)
+        // var bm = card_view.drawingCache
+        println("Change view to image called")
+        storeBitmap(bitmap)
+    }
+
+    fun storeBitmap(bm: Bitmap) {
+       /* var iconsStoragePath: String = Environment.getExternalStorageDirectory().toString() + "/myAppDir/myImages/"
+        var file = File(iconsStoragePath)
+*/
+
+        val sd = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val imageFolder = File(sd.absolutePath + File.separator +
+                "FolderName" + File.separator + "myImages")
+
+        if (!imageFolder.isDirectory) {
+            imageFolder.mkdirs()
+        }
+
+        val mediaFile = File(imageFolder.toString() + File.separator + "temp.jpg")
+
+        shareAblefile = mediaFile
+        println(mediaFile)
+       /* file.mkdirs()
+        var file2 = File(file, "temp.jpg")
+        shareAblefile = file
+        if (file2.exists()) {
+            file2.delete()
+        }*/
+
+        try {
+            var fileOutputStream = FileOutputStream(mediaFile)
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+            fileOutputStream.flush()
+            fileOutputStream.close()
+
+        } catch (e: Exception) {
+            println(e.toString())
+        }
+
+
+    }
+
+    fun callPreviewActivity() {
+        changeViewToBitmap()
+
         var intent = Intent(this@NormalMessageActivity, PreviewActivity::class.java)
 
         startActivity(intent)
     }
 
-    fun storeBitmap(bm: Bitmap) {
-        var iconsStoragePath: String = Environment.getExternalStorageDirectory() + "/myAppDir/myImages/"
+    fun shareImageViaIntent() {
+        changeViewToBitmap()
+        var intent = Intent(Intent.ACTION_SEND)
+        intent.type = "image/jpeg"
+        intent.putExtra(Intent.EXTRA_STREAM, getURI())
+        startActivity(Intent.createChooser(intent, "SHARE"))
+    }
 
-
+    fun getURI() : Uri{
+        return FileProvider.getUriForFile(this,
+                BuildConfig.APPLICATION_ID,
+                shareAblefile)
     }
 
 }
